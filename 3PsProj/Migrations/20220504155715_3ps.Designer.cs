@@ -10,7 +10,7 @@ using _3PsProj.Data;
 namespace _3PsProj.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20220504082258_3ps")]
+    [Migration("20220504155715_3ps")]
     partial class _3ps
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

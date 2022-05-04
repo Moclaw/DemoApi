@@ -7,17 +7,15 @@ using Microsoft.EntityFrameworkCore;
 using _3PsProj.Data;
 using _3PsProj.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace _3PsProj.Controllers
 {
     [Route("api/ultils/[action]")]
     [ApiController]
     public class CompaniesController : Controller
     {
-        public ProjectDbContext _context { get; }
+        public IDbContextFactory<ProjectDbContext> _context;
 
-        public CompaniesController(ProjectDbContext context)
+        public CompaniesController(IDbContextFactory<ProjectDbContext> context)
         {
             _context = context;
         }
@@ -36,100 +34,145 @@ namespace _3PsProj.Controllers
 
         private List<Company> GetCompaniesTree()
         {
-            var companies = _context.Companies.Include(c => c.Childrens).ToList();
-            var companiesTree = new List<Company>();
-            foreach (var company in companies)
+            using (var context = _context.CreateDbContext())
             {
-                if (company.CompanyId == null)
+                var companies = context.Companies.Include(c => c.Childrens).ToList();
+                var companiesTree = new List<Company>();
+                foreach (var company in companies)
                 {
-                    companiesTree.Add(company);
+                    if (company.CompanyId == null)
+                    {
+                        companiesTree.Add(company);
+                    }
                 }
+                return companiesTree;
             }
-            return companiesTree;
         }
 
         [HttpGet]
         public async Task<ActionResult<Company>> GetCompany(int id)
         {
-            var cmp = await _context.Companies.FindAsync(id);
-            if (cmp == null)
+            using (var context = _context.CreateDbContext())
             {
-                return BadRequest();
+                var company = await context.Companies.FindAsync(id);
+                if (company == null)
+                {
+                    return NotFound();
+                }
+                return company;
             }
-            return cmp;
         }
 
         [HttpPost]
         public async Task<ActionResult<Company>> AddCompany(Company company)
         {
-            if (company == null)
+            using (var context = _context.CreateDbContext())
             {
-                return BadRequest();
+                if (company == null)
+                {
+                    return BadRequest();
+                }
+                var cmp = await context.Companies.FirstOrDefaultAsync();
+                company.Childrens = new List<Company>();
+                if (cmp == null)
+                {
+                    company.CompanyId = null;
+                    context.Companies.Add(company);
+                    await context.SaveChangesAsync();
+                }
+                else
+                {
+                    cmp.Childrens = new List<Company>();
+                    cmp.Childrens.Add(company);
+                    context.Update(cmp);
+                    await context.SaveChangesAsync();
+                }
+                return company;
             }
-            var cmp = await _context.Companies.FirstOrDefaultAsync();
-            company.Childrens = new List<Company>();
-            if (cmp == null)
-            {
-                _context.Companies.Add(company);
-                await _context.SaveChangesAsync();
-            }
-            else
-            {
-                cmp.Childrens = new List<Company>();
-                cmp.Childrens.Add(company);
-                _context.Update(company);
-                await _context.SaveChangesAsync();
-            }
-            return company;
         }
 
-        [HttpPost("[action]/{id}")]
+        [HttpPost]
         public async Task<ActionResult<Company>> AddChild(int id, Company company)
         {
-            if (company == null)
+            using (var context = _context.CreateDbContext())
             {
-                return BadRequest();
-            }
-            var cmp = await _context.Companies.FirstOrDefaultAsync(c => c.Id == id);
-            if (cmp == null)
-            {
-                return BadRequest();
-            }
-            company.Childrens = new List<Company>();
-            cmp.Childrens = new List<Company>();
-            cmp.Childrens.Add(company);
-            _context.Update(company);
-            await _context.SaveChangesAsync();
+                if (company == null)
+                {
+                    return BadRequest();
+                }
+                var cmp = await context.Companies.FirstOrDefaultAsync(c => c.Id == id);
+                if (cmp == null)
+                {
+                    return BadRequest();
+                }
+                company.Childrens = new List<Company>();
+                cmp.Childrens = new List<Company>();
+                cmp.Childrens.Add(company);
+                context.Update(company);
+                await context.SaveChangesAsync();
 
-            return company;
+                return company;
+            }
         }
 
         [HttpPut]
-        public async Task<ActionResult<Company>> UpdateCompany(Company company)
+        public async Task<ActionResult<Company>> EditCompany(Company company)
         {
-            if (company == null)
+            using (var context = _context.CreateDbContext())
             {
-                return BadRequest();
+                if (company == null)
+                {
+                    return BadRequest();
+                }
+                var cmp = await context.Companies
+                    .Where(c => c.Id == company.Id)
+                    .Include(c => c.Childrens)
+                    .ThenInclude(c => c.Childrens)
+                    .FirstOrDefaultAsync();
+                if (cmp == null)
+                {
+                    return BadRequest();
+                }
+                cmp.Name = company.Name;
+                cmp.Decription = company.Decription;
+                cmp.Code = company.Code;
+                cmp.Note = company.Note;
+                cmp.Radio = company.Radio;
+                cmp.Serial = company.Serial;
+                context.Update(cmp);
+                context.Companies.AsNoTracking();
+                await context.SaveChangesAsync();
+                return Ok();
             }
-            company.Childrens = await _context.Companies
-                .Where(c => c.CompanyId == company.Id)
-                .ToListAsync();
-            _context.Update(company);
-            await _context.SaveChangesAsync();
-            return company;
         }
 
         [HttpDelete]
         public async Task<ActionResult<Company>> DeleteCompany(int id)
         {
-            var company = await _context.Companies.FindAsync(id);
-            if (company == null)
+            using (var context = _context.CreateDbContext())
             {
-                return BadRequest();
+                var company = await context.Companies
+                    .Where(c => c.Id == id)
+                    .Include(c => c.Childrens)
+                    .ThenInclude(c => c.Childrens)
+                    .FirstOrDefaultAsync();
+                List<Company> cmp = new List<Company>();
+                if (company == null)
+                {
+                    return BadRequest();
+                }
+                if (company.Childrens != null)
+                {
+                    foreach (var item in company.Childrens)
+                    {
+                        cmp.Add(item);
+                    }
+                }
+                context.Companies.Remove(company);
+                context.Companies.RemoveRange(cmp);
+                await context.SaveChangesAsync();
+                return company;
             }
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
-            return company;
         }
     }
 }

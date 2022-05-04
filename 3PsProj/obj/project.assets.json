@@ -5985,11 +5985,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/morclaw/Projects/3PsProj/3PsProj/3PsProj.csproj",
+      "projectUniqueName": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
       "projectName": "3PsProj",
-      "projectPath": "/Users/morclaw/Projects/3PsProj/3PsProj/3PsProj.csproj",
+      "projectPath": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
       "packagesPath": "/Users/morclaw/.nuget/packages/",
-      "outputPath": "/Users/morclaw/Projects/3PsProj/3PsProj/obj/",
+      "outputPath": "/Users/morclaw/Projects/DemoApi/3PsProj/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/morclaw/.nuget/NuGet/NuGet.Config"

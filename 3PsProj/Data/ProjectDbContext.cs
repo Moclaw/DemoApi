@@ -12,6 +12,7 @@ namespace _3PsProj.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Company>().HasKey(c => c.Id);
             base.OnModelCreating(builder);
         }
     }
