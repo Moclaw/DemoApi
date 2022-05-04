@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/morclaw/.dotnet/store/|arch|/|tfm|",
+      "/Users/morclaw/.nuget/packages"
+    ]
+  }
+}
