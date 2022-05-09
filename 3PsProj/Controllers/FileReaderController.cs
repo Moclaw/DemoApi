@@ -62,11 +62,17 @@ namespace _3PsProj.Controllers
             }
             foreach (var file in files)
             {
+                var image = System.Drawing.Image.FromFile(file.FullName);
+                var width = image.Width;
+                var height = image.Height;
+                image.Dispose();
                 filesAndFolders.Add(
                     new FileReader
                     {
                         FileName = file.Name,
                         Type = true,
+                        Height = height,
+                        Width = width,
                         Childrens = null
                     }
                 );

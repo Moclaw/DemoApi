@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj": {}
+    "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj": {}
   },
   "projects": {
-    "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj": {
+    "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj",
+        "projectUniqueName": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
         "projectName": "3PsProj",
-        "projectPath": "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj",
-        "packagesPath": "C:\\Users\\mocdu\\.nuget\\packages\\",
-        "outputPath": "D:\\GithubClone\\DemoApi\\3PsProj\\obj\\",
+        "projectPath": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
+        "packagesPath": "/Users/morclaw/.nuget/packages/",
+        "outputPath": "/Users/morclaw/Projects/DemoApi/3PsProj/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mocdu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/morclaw/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,6 +61,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[5.0.3, )"
             }
           },
           "imports": [
@@ -83,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
         }
       }
     }
