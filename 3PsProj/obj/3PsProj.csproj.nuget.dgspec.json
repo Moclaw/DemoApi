@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj": {}
+    "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj": {}
   },
   "projects": {
-    "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj": {
+    "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
+        "projectUniqueName": "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj",
         "projectName": "3PsProj",
-        "projectPath": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
-        "packagesPath": "/Users/morclaw/.nuget/packages/",
-        "outputPath": "/Users/morclaw/Projects/DemoApi/3PsProj/obj/",
+        "projectPath": "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj",
+        "packagesPath": "C:\\Users\\mocdu\\.nuget\\packages\\",
+        "outputPath": "D:\\GithubClone\\DemoApi\\3PsProj\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/morclaw/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\mocdu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -81,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

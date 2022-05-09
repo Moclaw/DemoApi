@@ -5,10 +5,10 @@ namespace _3PsProj.Models
 {
     public class FileReader
     {
-        public int Id { get; set; }
         public string FileName { get; set; }
         public bool Type { get; set; }
-        public int Size { get; set; }
+        public double Height { get; set; }
+        public double Width { get; set; }
         public List<FileReader> Childrens { get; set; }
     }
 }

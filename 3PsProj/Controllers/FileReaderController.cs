@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using _3PsProj.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
@@ -24,32 +21,57 @@ namespace _3PsProj.Controllers
         [HttpGet]
         public IActionResult GetFileReader()
         {
-            int id = 1;
             DirectoryInfo directory = new DirectoryInfo(@"ActionFolder");
-            DirectoryInfo[] folders = directory.GetDirectories("*", SearchOption.AllDirectories);
-            List<FileReader> fileReaders = new List<FileReader>();
-            foreach (DirectoryInfo folder in folders)
+            var folders = directory.GetDirectories();
+            var files = directory.GetFiles("*.png", SearchOption.TopDirectoryOnly);
+            var filesAndFolders = new List<FileReader>();
+            foreach (var folder in folders)
             {
-                id++;
-                FileReader fileReader = new FileReader();
-                fileReader.Id = id;
-                fileReader.FileName = folder.Name;
-                fileReader.Type = false;
-                fileReader.Size = 0;
-                fileReader.Childrens = new List<FileReader>();
-                foreach (FileInfo file in folder.GetFiles("*.png", SearchOption.AllDirectories))
-                {
-                    FileReader fileReaderChild = new FileReader();
-                    fileReaderChild.Id = id;
-                    fileReaderChild.FileName = file.Name;
-                    fileReaderChild.Type = true;
-                    fileReaderChild.Size = (int)file.Length;
-                    fileReader.Childrens.Add(fileReaderChild);
-                }
-
-                fileReaders.Add(fileReader);
+                filesAndFolders.Add(
+                    new FileReader
+                    {
+                        FileName = folder.Name,
+                        Type = false,
+                        Height = 0,
+                        Width = 0,
+                        Childrens = GetChildrens(folder)
+                    }
+                );
             }
-            return Ok(fileReaders);
+
+            return Ok(filesAndFolders);
+        }
+
+        private List<FileReader> GetChildrens(DirectoryInfo directory)
+        {
+            var folders = directory.GetDirectories();
+            var files = directory.GetFiles("*.png", SearchOption.TopDirectoryOnly);
+            var filesAndFolders = new List<FileReader>();
+            foreach (var folder in folders)
+            {
+                filesAndFolders.Add(
+                    new FileReader
+                    {
+                        FileName = folder.Name,
+                        Type = false,
+                        Height = 0,
+                        Width = 0,
+                        Childrens = GetChildrens(folder)
+                    }
+                );
+            }
+            foreach (var file in files)
+            {
+                filesAndFolders.Add(
+                    new FileReader
+                    {
+                        FileName = file.Name,
+                        Type = true,
+                        Childrens = null
+                    }
+                );
+            }
+            return filesAndFolders;
         }
     }
 }
