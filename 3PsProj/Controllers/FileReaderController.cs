@@ -12,14 +12,6 @@ namespace _3PsProj.Controllers
     public class FileReaderController : Controller
     {
         [HttpGet]
-        public IActionResult Index()
-        {
-            var stream = new FileStream("config.json", FileMode.OpenOrCreate);
-            var reader = new StreamReader(stream);
-            return Ok();
-        }
-
-        [HttpGet]
         public IActionResult GetFileReader()
         {
             DirectoryInfo directory = new DirectoryInfo(@"ActionFolder");
@@ -39,7 +31,24 @@ namespace _3PsProj.Controllers
                     }
                 );
             }
-
+            foreach (var file in files)
+            {
+                double height = 0;
+                double width = 0;
+                var img = Image.FromFile(file.FullName, true);
+                height = img.Height;
+                width = img.Width;
+                filesAndFolders.Add(
+                    new FileReader
+                    {
+                        FileName = file.Name,
+                        Type = true,
+                        Height = height,
+                        Width = width,
+                        Childrens = null
+                    }
+                );
+            }
             return Ok(filesAndFolders);
         }
 
@@ -63,20 +72,14 @@ namespace _3PsProj.Controllers
             }
             foreach (var file in files)
             {
-                double height;
-                double width;
-                using (var img = Image.FromFile(file.Name))
-                {
-                     height = img.Height;
-                     width = img.Width;
-                }
+                var img = Image.FromFile(file.FullName);
                 filesAndFolders.Add(
                     new FileReader
                     {
                         FileName = file.Name,
                         Type = true,
-                        Height = height,
-                        Width = width,
+                        Height = img.Height,
+                        Width = img.Width,
                         Childrens = null
                     }
                 );

@@ -11,6 +11,18 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "LazZiya.ImageResize/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/LazZiya.ImageResize.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/LazZiya.ImageResize.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
@@ -1613,6 +1625,22 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "LazZiya.ImageResize/4.1.0": {
+      "sha512": "bTAJ7Coa2I2PAKw7rcIyjVZlpJnoJacTpkAYAFDSQTrWC4r6m19zoVfMYbn/CXsJc9mfVqznuf0Ql0uwvproKg==",
+      "type": "package",
+      "path": "lazziya.imageresize/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.ico",
+        "icon.png",
+        "lazziya.imageresize.4.1.0.nupkg.sha512",
+        "lazziya.imageresize.nuspec",
+        "lib/netstandard2.0/LazZiya.ImageResize.dll",
+        "lib/netstandard2.0/LazZiya.ImageResize.xml",
+        "license.txt"
       ]
     },
     "Microsoft.CSharp/4.7.0": {
@@ -5974,6 +6002,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "LazZiya.ImageResize >= 4.1.0",
       "Microsoft.EntityFrameworkCore >= 5.0.16",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.16",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.16",
@@ -5983,24 +6012,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/morclaw/.nuget/packages/": {}
+    "C:\\Users\\mocdu\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
+      "projectUniqueName": "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj",
       "projectName": "3PsProj",
-      "projectPath": "/Users/morclaw/Projects/DemoApi/3PsProj/3PsProj.csproj",
-      "packagesPath": "/Users/morclaw/.nuget/packages/",
-      "outputPath": "/Users/morclaw/Projects/DemoApi/3PsProj/obj/",
+      "projectPath": "D:\\GithubClone\\DemoApi\\3PsProj\\3PsProj.csproj",
+      "packagesPath": "C:\\Users\\mocdu\\.nuget\\packages\\",
+      "outputPath": "D:\\GithubClone\\DemoApi\\3PsProj\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/morclaw/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\mocdu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6019,6 +6050,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "LazZiya.ImageResize": {
+            "target": "Package",
+            "version": "[4.1.0, )"
+          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[5.0.16, )"
@@ -6066,7 +6101,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
