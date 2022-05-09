@@ -2,6 +2,7 @@
 using _3PsProj.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Drawing;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -62,10 +63,13 @@ namespace _3PsProj.Controllers
             }
             foreach (var file in files)
             {
-                var image = System.Drawing.Image.FromFile(file.FullName);
-                var width = image.Width;
-                var height = image.Height;
-                image.Dispose();
+                double height;
+                double width;
+                using (var img = Image.FromFile(file.Name))
+                {
+                     height = img.Height;
+                     width = img.Width;
+                }
                 filesAndFolders.Add(
                     new FileReader
                     {
