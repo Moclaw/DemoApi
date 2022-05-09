@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\mocdu\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\mocdu\\.nuget\\packages"
+      "/Users/morclaw/.dotnet/store/|arch|/|tfm|",
+      "/Users/morclaw/.nuget/packages"
     ]
   }
 }
