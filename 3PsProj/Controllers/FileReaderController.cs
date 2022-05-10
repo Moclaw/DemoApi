@@ -3,6 +3,7 @@ using _3PsProj.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Drawing;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,22 +34,18 @@ namespace _3PsProj.Controllers
             }
             foreach (var file in files)
             {
-                double height = 0;
-                double width = 0;
-                var img = Image.FromFile(file.FullName, true);
-                height = img.Height;
-                width = img.Width;
                 filesAndFolders.Add(
                     new FileReader
                     {
                         FileName = file.Name,
                         Type = true,
-                        Height = height,
-                        Width = width,
+                        Height = 0,
+                        Width = 0,
                         Childrens = null
                     }
                 );
             }
+            WriteFileToJson(filesAndFolders);
             return Ok(filesAndFolders);
         }
 
@@ -72,19 +69,27 @@ namespace _3PsProj.Controllers
             }
             foreach (var file in files)
             {
-                var img = Image.FromFile(file.FullName);
+                // var img = Image.FromFile(file.FullName);
                 filesAndFolders.Add(
                     new FileReader
                     {
                         FileName = file.Name,
                         Type = true,
-                        Height = img.Height,
-                        Width = img.Width,
+                        Height = 0, //img.Height,
+                        Width = 0, // img.Width,
                         Childrens = null
                     }
                 );
             }
             return filesAndFolders;
+        }
+
+        private void WriteFileToJson(List<FileReader> filesAndFolders)
+        {
+            using (StreamWriter file = new StreamWriter(@"config.json"))
+            {
+                file.WriteLine(JsonConvert.SerializeObject(filesAndFolders));
+            }
         }
     }
 }

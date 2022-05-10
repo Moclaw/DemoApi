@@ -7,8 +7,8 @@ namespace _3PsProj.Models
     {
         public string FileName { get; set; }
         public bool Type { get; set; }
-        public double Height { get; set; }
-        public double Width { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
         public List<FileReader> Childrens { get; set; }
     }
 }

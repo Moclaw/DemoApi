@@ -1,0 +1,82 @@
+[
+	{
+		"FileName": "a",
+		"Type": false,
+		"Height": 0,
+		"Width": 0,
+		"Childrens": [
+			{
+				"FileName": "child 2",
+				"Type": false,
+				"Height": 0,
+				"Width": 0,
+				"Childrens": []
+			},
+			{
+				"FileName": "child 1",
+				"Type": false,
+				"Height": 0,
+				"Width": 0,
+				"Childrens": [
+					{
+						"FileName": "child 3",
+						"Type": false,
+						"Height": 0,
+						"Width": 0,
+						"Childrens": [
+							{
+								"FileName": "3.png",
+								"Type": true,
+								"Height": 0,
+								"Width": 0,
+								"Childrens": null
+							}
+						]
+					},
+					{
+						"FileName": "3.png",
+						"Type": true,
+						"Height": 0,
+						"Width": 0,
+						"Childrens": null
+					}
+				]
+			},
+			{
+				"FileName": "2.png",
+				"Type": true,
+				"Height": 0,
+				"Width": 0,
+				"Childrens": null
+			}
+		]
+	},
+	{
+		"FileName": "b",
+		"Type": false,
+		"Height": 0,
+		"Width": 0,
+		"Childrens": []
+	},
+	{
+		"FileName": "test2.png",
+		"Type": true,
+		"Height": 0,
+		"Width": 0,
+		"Childrens": null
+	},
+	{
+		"FileName": "test.png",
+		"Type": true,
+		"Height": 0,
+		"Width": 0,
+		"Childrens": null
+	},
+	{
+		"FileName": "1.png",
+		"Type": true,
+		"Height": 0,
+		"Width": 0,
+		"Childrens": null
+	}
+]
