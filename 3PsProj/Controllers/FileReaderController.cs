@@ -34,13 +34,15 @@ namespace _3PsProj.Controllers
             }
             foreach (var file in files)
             {
+                var img = Image.FromFile(file.FullName);
+
                 filesAndFolders.Add(
                     new FileReader
                     {
                         FileName = file.Name,
                         Type = true,
-                        Height = 0,
-                        Width = 0,
+                        Height = img.Height,
+                        Width = img.Width,
                         Childrens = null
                     }
                 );
@@ -69,14 +71,14 @@ namespace _3PsProj.Controllers
             }
             foreach (var file in files)
             {
-                // var img = Image.FromFile(file.FullName);
+                var img = Image.FromFile(file.FullName);
                 filesAndFolders.Add(
                     new FileReader
                     {
                         FileName = file.Name,
                         Type = true,
-                        Height = 0, //img.Height,
-                        Width = 0, // img.Width,
+                        Height = img.Height,
+                        Width = img.Width,
                         Childrens = null
                     }
                 );
